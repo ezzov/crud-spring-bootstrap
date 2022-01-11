@@ -1,6 +1,6 @@
-package Service;
+package CRUD_Spring_Boot.crudspringboot.Service;
 
-import model.User;
+import CRUD_Spring_Boot.crudspringboot.model.User;
 
 import java.util.List;
 

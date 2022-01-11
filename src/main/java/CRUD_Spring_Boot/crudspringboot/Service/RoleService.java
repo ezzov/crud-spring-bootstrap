@@ -1,10 +1,11 @@
-package DAO;
+package CRUD_Spring_Boot.crudspringboot.Service;
 
-import model.Role;
+import CRUD_Spring_Boot.crudspringboot.model.Role;
 
 import java.util.List;
+import java.util.Set;
 
-public interface RoleDAO {
+public interface RoleService {
 
     List<Role> getAllRoles();
 
@@ -17,4 +18,6 @@ public interface RoleDAO {
     void deleteRole(long id);
 
     Role loadRoleByName(String name);
+
+    Set<Role> makeSet(String[] roles);
 }

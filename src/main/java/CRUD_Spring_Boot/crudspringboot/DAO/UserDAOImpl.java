@@ -1,6 +1,6 @@
-package DAO;
+package CRUD_Spring_Boot.crudspringboot.DAO;
 
-import model.User;
+import CRUD_Spring_Boot.crudspringboot.model.User;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

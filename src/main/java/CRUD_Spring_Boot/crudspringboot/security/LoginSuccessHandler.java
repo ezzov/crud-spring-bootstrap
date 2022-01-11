@@ -1,4 +1,4 @@
-package security;
+package CRUD_Spring_Boot.crudspringboot.security;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.authority.AuthorityUtils;

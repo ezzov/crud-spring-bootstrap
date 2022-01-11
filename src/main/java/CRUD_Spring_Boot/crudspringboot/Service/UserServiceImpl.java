@@ -1,7 +1,7 @@
-package Service;
+package CRUD_Spring_Boot.crudspringboot.Service;
 
-import DAO.UserDAO;
-import model.User;
+import CRUD_Spring_Boot.crudspringboot.DAO.UserDAO;
+import CRUD_Spring_Boot.crudspringboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

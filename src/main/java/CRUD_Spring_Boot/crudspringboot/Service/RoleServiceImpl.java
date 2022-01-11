@@ -1,7 +1,7 @@
-package Service;
+package CRUD_Spring_Boot.crudspringboot.Service;
 
-import DAO.RoleDAO;
-import model.Role;
+import CRUD_Spring_Boot.crudspringboot.DAO.RoleDAO;
+import CRUD_Spring_Boot.crudspringboot.model.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
