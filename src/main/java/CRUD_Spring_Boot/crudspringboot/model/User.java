@@ -1,5 +1,7 @@
 package CRUD_Spring_Boot.crudspringboot.model;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -17,18 +19,22 @@ public class User implements UserDetails {
     private Long id;
 
     @Column
-    private String name;
+    private String firstName;
 
     @Column
-    private String nickname;
+    private String lastName;
 
     @Column
     private int age;
 
     @Column
+    private String email;
+
+    @Column
     private String password;
 
-    @ManyToMany(fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+    @Fetch(FetchMode.JOIN)
     @JoinTable(name = "users_roles",
             joinColumns = @JoinColumn(name = "users_id"),
             inverseJoinColumns = @JoinColumn(name = "roles_id")
@@ -38,11 +44,12 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id, String name, String nickname, int age, String password, Set<Role> roles) {
+    public User(Long id, String firstName, String lastName, int age, String email, String password, Set<Role> roles) {
         this.id = id;
-        this.name = name;
-        this.nickname = nickname;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.age = age;
+        this.email = email;
         this.password = password;
         this.roles = roles;
     }
@@ -55,20 +62,20 @@ public class User implements UserDetails {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
-    public String getNickname() {
-        return nickname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public void setNickname(String nickname) {
-        this.nickname = nickname;
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public int getAge() {
@@ -77,6 +84,14 @@ public class User implements UserDetails {
 
     public void setAge(int age) {
         this.age = age;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -103,7 +118,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return name;
+        return firstName;
     }
 
     @Override

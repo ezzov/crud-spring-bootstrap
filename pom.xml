@@ -8,8 +8,8 @@
 		<version>2.6.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>CRUD_Spring_Boot</groupId>
-	<artifactId>crud-spring-boot</artifactId>
+	<groupId>CRUD_Spring_BootStrap</groupId>
+	<artifactId>crud-spring-bootstrap</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
 	<name>crud-spring-boot</name>

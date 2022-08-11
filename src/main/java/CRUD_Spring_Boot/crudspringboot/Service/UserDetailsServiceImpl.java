@@ -1,5 +1,6 @@
 package CRUD_Spring_Boot.crudspringboot.Service;
 
+import CRUD_Spring_Boot.crudspringboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -20,6 +21,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String s) throws UsernameNotFoundException {
-        return userService.loadUserByUsername(s);
+        User user = userService.loadUserByUsername(s);
+        if (user == null) {
+            throw new UsernameNotFoundException(String.format("User '%' not found", s));
+        }
+
+        return user;
     }
 }
