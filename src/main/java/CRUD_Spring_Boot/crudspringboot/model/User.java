@@ -9,6 +9,7 @@ import javax.persistence.*;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Entity
 @Table(name = "users")
@@ -27,8 +28,8 @@ public class User implements UserDetails {
     @Column
     private int age;
 
-    @Column
-    private String email;
+    @Column(name = "email", unique = true)
+    private String name;
 
     @Column
     private String password;
@@ -44,12 +45,12 @@ public class User implements UserDetails {
     public User() {
     }
 
-    public User(Long id, String firstName, String lastName, int age, String email, String password, Set<Role> roles) {
+    public User(Long id, String firstName, String lastName, int age, String name, String password, Set<Role> roles) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.age = age;
-        this.email = email;
+        this.name = name;
         this.password = password;
         this.roles = roles;
     }
@@ -86,12 +87,12 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public String getEmail() {
-        return email;
+    public String getName() {
+        return name;
     }
 
-    public void setEmail(String email) {
-        this.email = email;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setPassword(String password) {
@@ -106,6 +107,11 @@ public class User implements UserDetails {
         this.roles = roles;
     }
 
+    public String getRolesToString(Set<String> roles) {
+        roles = roles.stream().map(s -> s.replaceFirst("ROLE_", "")).collect(Collectors.toSet());
+        return String.join(" ", roles);
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return roles;
@@ -118,7 +124,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return firstName;
+        return name;
     }
 
     @Override
