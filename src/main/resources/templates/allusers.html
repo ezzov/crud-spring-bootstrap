@@ -82,13 +82,17 @@
                                             </tr>
                                             </thead>
                                             <tbody>
-                                            <tr th:each="user : ${allUs}">
+                                            <tr th:each="user : ${users}">
                                                 <td th:text="${user.getId()}"></td>
-                                                <td th:text="${user.getUsername()}"></td>
-                                                <td th:text="${user.getLast_name()}"></td>
+                                                <td th:text="${user.getFirstName()}"></td>
+                                                <td th:text="${user.getLastName()}"></td>
                                                 <td th:text="${user.getAge()}"></td>
-                                                <td th:text="${user.getEmail()}"></td>
-                                                <td th:text="${user.getRoles()}"></td>
+                                                <td th:text="${user.getName()}"></td>
+                                                <td>
+                                                    <span th:each="role : ${user.getRoles()}"
+                                                             th:text="${role.getRole()} + ' '">
+                                                    </span>
+                                                </td>
                                                 <!--Добавление кнопок в таблицу-->
                                                 <td>
                                                     <button class="btn btn-info edit-btn"
@@ -136,8 +140,8 @@
                                                                            for="firstname">First name</label>
                                                                     <input type="text"
                                                                            class="form-control"
-                                                                           name="username"
-                                                                           th:value="${user.username}"
+                                                                           name="firstName"
+                                                                           th:value="${user.firstName}"
                                                                            id="firstname"
                                                                            required>
                                                                     <br>
@@ -145,8 +149,8 @@
                                                                            for="lastname">Last name</label>
                                                                     <input type="text"
                                                                            class="form-control"
-                                                                           name="last_name"
-                                                                           th:value="${user.last_name}"
+                                                                           name="lastName"
+                                                                           th:value="${user.lastName}"
                                                                            id="lastname"
                                                                            required>
                                                                     <br>
@@ -163,8 +167,8 @@
                                                                            for="Email">Email</label>
                                                                     <input type="text"
                                                                            class="form-control"
-                                                                           th:value="${user.email}"
-                                                                           name="email"
+                                                                           th:value="${user.name}"
+                                                                           name="name"
                                                                            id="Email"
                                                                            required>
                                                                     <br>
@@ -182,13 +186,10 @@
                                                                     <select multiple size="2"
                                                                             class="form-control"
                                                                             id="roles"
-                                                                            name="rolles"
+                                                                            name="roles"
                                                                             required>
-                                                                        <option
-                                                                                th:each="role : ${allRoles}"
-                                                                                th:value="${role.role}"
-                                                                                th:text="${role.role}">
-                                                                        </option>
+                                                                        <option>ADMIN</option>
+                                                                        <option>USER</option>
                                                                     </select>
                                                                     <br>
                                                                 </div>
@@ -226,7 +227,7 @@
                                                             </div>
 
                                                             <form class="modal-body col-md text-center"
-                                                                  th:action="@{/admin/delete/{id}(id=${user.id})}"
+                                                                  th:action="@{/admin/remove/{id}(id=${user.id})}"
                                                                   th:method="DELETE">
                                                                 <div class="modal-body text-center">
                                                                     <label class="font-weight-bold"
@@ -242,8 +243,8 @@
                                                                            for="firstname1">First name</label>
                                                                     <input type="text"
                                                                            class="form-control"
-                                                                           name="username"
-                                                                           th:value="${user.username}"
+                                                                           name="firstName"
+                                                                           th:value="${user.firstName}"
                                                                            id="firstname1"
                                                                            readonly>
                                                                     <br>
@@ -251,8 +252,8 @@
                                                                            for="lastname2">Last name</label>
                                                                     <input type="text"
                                                                            class="form-control"
-                                                                           name="last_name"
-                                                                           th:value="${user.last_name}"
+                                                                           name="lastName"
+                                                                           th:value="${user.lastName}"
                                                                            id="lastname2"
                                                                            readonly>
                                                                     <br>
@@ -269,8 +270,8 @@
                                                                            for="email2">Email</label>
                                                                     <input type="text"
                                                                            class="form-control"
-                                                                           th:value="${user.email}"
-                                                                           name="email"
+                                                                           th:value="${user.name}"
+                                                                           name="name"
                                                                            id="email2"
                                                                            readonly>
                                                                     <br>
@@ -317,13 +318,13 @@
                                         <div class="row">
                                             <div class="col-4"></div>
                                             <div class="col-4">
-                                                <form th:action="@{/admin/users}" th:object="${user}" method="POST">
+                                                <form th:action="@{/admin/users}" th:object="${user}" th:method="POST">
                                                     <br>
                                                     <div class="font-weight-bold">
                                                         <label for="name">First name</label>
                                                         <input type="text"
                                                                class="form-control"
-                                                               name="username"
+                                                               name="firstName"
                                                                placeholder="First name"
                                                                id="name"
                                                                required>
@@ -333,7 +334,7 @@
                                                         <label for="lastname3">Last name</label>
                                                         <input type="text"
                                                                class="form-control"
-                                                               name="last_name"
+                                                               name="lastName"
                                                                placeholder="Last name"
                                                                id="lastname3"
                                                                required>
@@ -354,7 +355,7 @@
                                                         <input type="text"
                                                                class="form-control"
                                                                placeholder="Email"
-                                                               name="email"
+                                                               name="name"
                                                                id="email3"
                                                                required>
                                                     </div>

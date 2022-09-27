@@ -22,16 +22,11 @@ public class UserController {
     }
 
     @GetMapping(value = "/admin/users")
-    public String getAllUsers(Model model){
-        model.addAttribute("users", userService.getAllUsers());
-        return "allusers";
-    }
-
-    @GetMapping("/user")
-    public String getUser(@AuthenticationPrincipal User user, Model model) {
+    public String getAllUsers(@AuthenticationPrincipal User user, Model model){
         model.addAttribute("user", user);
+        model.addAttribute("users", userService.getAllUsers());
         model.addAttribute("roles", user.getRoles());
-        return "user";
+        return "allusers";
     }
 
     @GetMapping("/admin/new")
@@ -51,7 +46,7 @@ public class UserController {
     public String edit(Model model, @PathVariable("userId") int userId) {
         model.addAttribute("user", userService.getUser(userId));
         model.addAttribute("roles", roleService.getAllRoles());
-        return "update";
+        return "allusers";
     }
 
     @PatchMapping("/admin/edit/{id}")
