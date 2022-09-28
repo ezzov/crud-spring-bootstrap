@@ -10,13 +10,14 @@
     <title>Userlist</title>
 </head>
 <body>
-<nav class="navbar p-0 navbar-expand-lg navbar-dark bg-dark text-light">
+<nav class="navbar navbar-dark bg-dark">
     <span>
         <span class="navbar-brand font-weight-bold" th:text="${user.name}"></span>
-        <span class="navbar-brand" th:text="'with roles:'"></span>
-
+        <span class="navbar-brand" th:text="' with roles:'"></span>
+        <span class="navbar-brand" th:each="role : ${user.getRoles()}"
+              th:text="${role.getRole()} + ' '"></span>
     </span>
-    <ul class="navbar-nav">
+    <ul class="nav navbar-nav navbar-right">
         <li class="nav-item">
             <a class="nav-link" href="/logout">Logout</a>
         </li>
@@ -186,10 +187,9 @@
                                                                     <select multiple size="2"
                                                                             class="form-control"
                                                                             id="roles"
-                                                                            name="roles"
+                                                                            name="checkBoxRoles"
                                                                             required>
-                                                                        <option>ADMIN</option>
-                                                                        <option>USER</option>
+                                                                        <option th:each="role : ${roles}" th:value="${role.role}" th:text="${role.role}" th:selected="${role.role} == USER"></option>
                                                                     </select>
                                                                     <br>
                                                                 </div>
@@ -280,7 +280,7 @@
                                                                     <select multiple size="2"
                                                                             class="form-control"
                                                                             id="roles2"
-                                                                            name="rolles"
+                                                                            name="checkBoxRoles"
                                                                             readonly>
                                                                         <option
                                                                                 th:each="role : ${user.roles}"
@@ -373,8 +373,7 @@
                                                     <div class="form-group col-sm-4" style="margin: 0 auto;">
                                                         <label for="roles3" style="margin: 0px;"><h6>Roles</h6></label>
                                                         <select th:class="form-control" id="roles3" th:name="checkBoxRoles">
-                                                            <option>ADMIN</option>
-                                                            <option>USER</option>
+                                                            <option th:each="role : ${roles}" th:value="${role.role}" th:text="${role.role}" th:selected="${role.role} == USER"></option>
                                                         </select>
                                                     </div>
                                                     <br>

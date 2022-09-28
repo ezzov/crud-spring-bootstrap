@@ -5,6 +5,7 @@ import CRUD_Spring_Boot.crudspringboot.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +15,7 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private UserDAO userDAO;
     private RoleService roleService;
+    private PasswordEncoder passwordEncoder;
 
     @Autowired
     public void setUserDAO(UserDAO userDAO) {
@@ -23,6 +25,11 @@ public class UserServiceImpl implements UserService {
     @Autowired
     public void setRoleService(RoleService roleService) {
         this.roleService = roleService;
+    }
+
+    @Autowired
+    public void setPasswordEncoder(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -40,6 +47,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void save(User user, String[] roles) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(roleService.makeSet(roles));
         userDAO.save(user);
     }
@@ -47,6 +55,7 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public void update(User user, String[] roles) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
         user.setRoles(roleService.makeSet(roles));
         userDAO.update(user);
     }
@@ -61,9 +70,5 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public User loadUserByUsername(String s) throws UsernameNotFoundException {
         return userDAO.loadUserByUsername(s);
-    }
-
-    private BCryptPasswordEncoder bCryptPasswordEncoder() {
-        return new BCryptPasswordEncoder();
     }
 }
