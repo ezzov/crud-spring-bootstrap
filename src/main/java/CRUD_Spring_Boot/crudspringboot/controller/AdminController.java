@@ -29,8 +29,6 @@ public class AdminController {
         return "allusers";
     }
 
-
-
     @PostMapping("/admin/users")
     public String create(@ModelAttribute("user") User user, @RequestParam(value = "checkBoxRoles") String[] checkBoxRoles) {
         userService.save(user, checkBoxRoles);

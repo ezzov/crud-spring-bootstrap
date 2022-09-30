@@ -125,7 +125,7 @@
                                                                 </button>
                                                             </div>
                                                             <form th:action="@{/admin/edit/{id}(id=${user.id})}"
-                                                                  th:object="${user}" method="post"
+                                                                  th:object="${user}" th:method="PATCH"
                                                                   th:id="${'editForm' + user.id}">
                                                                 <div class="modal-body col-md text-center">
                                                                     <label class="font-weight-bold"
