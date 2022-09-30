@@ -1,6 +1,6 @@
-package CRUD_Spring_Boot.crudspringboot.controller;
+package CRUD_Spring_Boot.crudspringboot.controllers;
 
-import CRUD_Spring_Boot.crudspringboot.model.User;
+import CRUD_Spring_Boot.crudspringboot.models.User;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

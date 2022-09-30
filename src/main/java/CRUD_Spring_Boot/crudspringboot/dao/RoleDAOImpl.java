@@ -1,6 +1,6 @@
-package CRUD_Spring_Boot.crudspringboot.DAO;
+package CRUD_Spring_Boot.crudspringboot.dao;
 
-import CRUD_Spring_Boot.crudspringboot.model.Role;
+import CRUD_Spring_Boot.crudspringboot.models.Role;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;

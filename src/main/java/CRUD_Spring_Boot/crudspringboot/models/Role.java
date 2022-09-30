@@ -1,4 +1,4 @@
-package CRUD_Spring_Boot.crudspringboot.model;
+package CRUD_Spring_Boot.crudspringboot.models;
 
 import org.springframework.security.core.GrantedAuthority;
 

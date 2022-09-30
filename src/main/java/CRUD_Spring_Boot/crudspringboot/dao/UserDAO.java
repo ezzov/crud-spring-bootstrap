@@ -1,6 +1,6 @@
-package CRUD_Spring_Boot.crudspringboot.DAO;
+package CRUD_Spring_Boot.crudspringboot.dao;
 
-import CRUD_Spring_Boot.crudspringboot.model.User;
+import CRUD_Spring_Boot.crudspringboot.models.User;
 
 import java.util.List;
 

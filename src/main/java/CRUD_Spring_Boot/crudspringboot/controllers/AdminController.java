@@ -1,8 +1,8 @@
-package CRUD_Spring_Boot.crudspringboot.controller;
+package CRUD_Spring_Boot.crudspringboot.controllers;
 
-import CRUD_Spring_Boot.crudspringboot.Service.RoleService;
-import CRUD_Spring_Boot.crudspringboot.Service.UserService;
-import CRUD_Spring_Boot.crudspringboot.model.User;
+import CRUD_Spring_Boot.crudspringboot.service.RoleService;
+import CRUD_Spring_Boot.crudspringboot.service.UserService;
+import CRUD_Spring_Boot.crudspringboot.models.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
